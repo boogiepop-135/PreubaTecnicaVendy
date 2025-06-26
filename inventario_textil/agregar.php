@@ -1,4 +1,5 @@
-<?php include 'db.php';
+<?php
+include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tipo = $_POST['tipo'];
@@ -15,17 +16,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>Agregar tela</title></head>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Tela</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-<h2>Agregar nuevo rollo</h2>
-<form method="POST">
-  Tipo de tela: <input type="text" name="tipo" required><br>
-  Color: <input type="text" name="color" required><br>
-  Largo (m): <input type="number" name="largo" step="0.1" required><br>
-  Fecha de ingreso: <input type="date" name="fecha" required><br>
-  <input type="submit" value="Guardar">
-</form>
-<a href="index.php">Volver</a>
+  <div class="form-container">
+    <h2>Agregar nuevo rollo</h2>
+    <form method="POST">
+      <label>Tipo de tela:</label>
+      <input type="text" name="tipo" required>
+
+      <label>Color:</label>
+      <input type="text" name="color" required>
+
+      <label>Largo (m):</label>
+      <input type="number" name="largo" step="0.1" required>
+
+      <label>Fecha de ingreso:</label>
+      <input type="date" name="fecha" required>
+
+      <input type="submit" value="Guardar">
+    </form>
+    <a class="volver" href="index.php">← Volver</a>
+  </div>
 </body>
 </html>

@@ -7,24 +7,42 @@ $telas = $conn->query("SELECT * FROM telas ORDER BY $orden DESC");
 ?>
 
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>Inventario actual</title></head>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario actual</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-<h2>Inventario</h2>
-<a href="?orden=fecha_ingreso">Ordenar por fecha</a> | 
-<a href="?orden=largo">Ordenar por stock</a><br><br>
+    <div class="inventory-container">
+        <h2 class="inventory-title">Inventario de Telas</h2>
+        
+        <div class="order-links">
+            <a href="?orden=fecha_ingreso">Ordenar por fecha</a>
+            <a href="?orden=largo">Ordenar por stock</a>
+        </div>
 
-<table border="1">
-  <tr><th>Tipo</th><th>Color</th><th>Largo (m)</th><th>Fecha</th></tr>
-  <?php while($row = $telas->fetch_assoc()): ?>
-    <tr>
-      <td><?= $row['tipo'] ?></td>
-      <td><?= $row['color'] ?></td>
-      <td><?= $row['largo'] ?></td>
-      <td><?= $row['fecha_ingreso'] ?></td>
-    </tr>
-  <?php endwhile; ?>
-</table>
-<a href="index.php">Volver</a>
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Color</th>
+                    <th>Largo (m)</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while($row = $telas->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['tipo']) ?></td>
+                        <td><?= htmlspecialchars($row['color']) ?></td>
+                        <td><?= htmlspecialchars($row['largo']) ?></td>
+                        <td><?= htmlspecialchars($row['fecha_ingreso']) ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+        <a href="index.php" class="volver">← Volver al inicio</a>
+    </div>
 </body>
 </html>
