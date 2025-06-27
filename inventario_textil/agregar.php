@@ -1,15 +1,20 @@
 <?php
-include 'db.php';
+include 'db.php';  // Base de datos
 
+// Procesar nuevo ingreso
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tipo = $_POST['tipo'];
-    $color = $_POST['color'];
-    $largo = floatval($_POST['largo']);
-    $fecha = $_POST['fecha'];
+    // Datos del formulario
+    $tipo = $_POST['tipo'];   // Nombre/tipo de tela
+    $color = $_POST['color']; // Color
+    $largo = floatval($_POST['largo']); // Metros
+    $fecha = $_POST['fecha']; // Fecha ingreso
 
+    // Insertar usando prepared statement
     $stmt = $conn->prepare("INSERT INTO telas (tipo, color, largo, fecha_ingreso) VALUES (?, ?, ?, ?)");
+    // s=string, d=decimal
     $stmt->bind_param("ssds", $tipo, $color, $largo, $fecha);
     $stmt->execute();
+    
     header("Location: index.php");
     exit;
 }
